@@ -1,12 +1,19 @@
         let productsData = {};
 
-        fetch('product.json')
-            .then(res => res.json())
-            .then(data => {
-                productsData = data;
-            })
-            .catch(err => console.error('Failed to load product.json', err));
-
+       fetch('products.json')
+        .then(res => {
+            if (!res.ok) throw new Error('Network response was not ok');
+            return res.text(); // baca dulu sebagai text
+        })
+        .then(text => {
+            try {
+                productsData = text ? JSON.parse(text) : {};
+            } catch(e) {
+                console.error('JSON parse error:', e);
+                productsData = {};
+            }
+        })
+        .catch(err => console.error('Failed to load product.json', err));
     
         // Modal functionality
         const modal = document.getElementById('productModal');
@@ -38,43 +45,49 @@
 
         function showProductGallery(category) {
             const data = productsData[category];
-            if (!data) return;
 
-            modalTitle.textContent = data.name;
+            modalTitle.textContent = data?.name || "Produk";
             productGallery.innerHTML = '';
 
-            data.items.forEach(item => {
-                const productItem = document.createElement('div');
-                productItem.className = 'gallery-item';
-                productItem.innerHTML = `
-                    <div class="gallery-image">
-                        <img src="${item.image}" alt="${item.name}">
-                    </div>
-                    <div class="gallery-info">
-                        <h3>${item.name}</h3>
-                        <p class="price">${item.price}</p>
-                        <div class="shop-links">
-                            <a href="${item.tokopedia}" target="_blank" class="shop-btn tokopedia" title="Beli di Tokopedia">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <circle cx="12" cy="12" r="10"/>
-                                </svg>
-                            </a>
-                            <a href="${item.shopee}" target="_blank" class="shop-btn shopee" title="Beli di Shopee">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-                                </svg>
-                            </a>
-                            <a href="${item.tiktok}" target="_blank" class="shop-btn tiktok" title="Beli di TikTok Shop">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                                </svg>
-                            </a>
+             if (!data) {
+                const comingSoon = document.createElement('div');
+                comingSoon.className = 'coming-soon';
+                comingSoon.textContent = 'Akan datang, tunggu momentnya ✨';
+                productGallery.appendChild(comingSoon);
+            }
+            else {
+                data.items.forEach(item => {
+                    const productItem = document.createElement('div');
+                    productItem.className = 'gallery-item';
+                    productItem.innerHTML = `
+                        <div class="gallery-image">
+                            <img src="${item.image}" alt="${item.name}">
                         </div>
-                    </div>
-                `;
-                productGallery.appendChild(productItem);
-            });
-
+                        <div class="gallery-info">
+                            <h3>${item.name}</h3>
+                            <p class="price">${item.price}</p>
+                            <div class="shop-links">
+                                <a href="${item.tokopedia}" target="_blank" class="shop-btn tokopedia" title="Beli di Tokopedia">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <circle cx="12" cy="12" r="10"/>
+                                    </svg>
+                                </a>
+                                <a href="${item.shopee}" target="_blank" class="shop-btn shopee" title="Beli di Shopee">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                                    </svg>
+                                </a>
+                                <a href="${item.tiktok}" target="_blank" class="shop-btn tiktok" title="Beli di TikTok Shop">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    productGallery.appendChild(productItem);
+                });
+            }
             modal.style.display = 'block';
             setTimeout(() => {
                 modal.classList.add('show');
