@@ -6,6 +6,8 @@
     <title>Pupede - Creative Print & Gifts</title>
     <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
     <header class="header">
@@ -19,10 +21,10 @@
             <!-- Desktop social links -->
             <div class="social-links desktop-only">
                 <a href="https://wa.me/6285211222122?text=Halo%20Pupede!%20Saya%20mau%20pesan%20produk%20cetak" class="social-btn whatsapp-btn" target="_blank">
-                    📱 WhatsApp
+                    <i class="fab fa-whatsapp"></i> WhatsApp
                 </a>
                 <a href="https://tiktok.com/@pupede" class="social-btn tiktok-btn" target="_blank">
-                    🎵 TikTok
+                    <i class="fab fa-tiktok"></i> TikTok
                 </a>
                 <a href="#products" class="social-btn products-btn">
                     🛍️ Lihat Produk
@@ -35,9 +37,13 @@
 
         <!-- Mobile dropdown menu -->
         <div class="mobile-menu mobile-only" id="mobileMenu">
-            <a href="https://wa.me/6285211222122?text=Halo%20Pupede!%20Saya%20mau%20pesan%20produk%20cetak" target="_blank">📱 WhatsApp</a>
-            <a href="https://tiktok.com/@pupede" target="_blank">🎵 TikTok</a>
-            <a href="#products">🛍️ Lihat Produk</a>
+            <a href="https://wa.me/6285211222122?text=Halo%20Pupede!%20Saya%20mau%20pesan%20produk%20cetak" target="_blank">
+                <i class="fab fa-whatsapp"></i> Pesan via WhatsApp
+            </a>
+            <a href="https://tiktok.com/@pupede" target="_blank">
+                <i class="fab fa-tiktok"></i> TikTok
+            </a>
+            <a href="#products">🛍️ Pilih Produk Kategori</a>
         </div>
     </header>
 
@@ -50,8 +56,8 @@
         </div>
     </section>
 
-    <div class="container">
-        <h2 class="section-title" id="products">🎁 <span class="label-title">Produk Cetak</span></h2>
+    <div class="container" id="products">
+        <h2 class="section-title" >🛍️ <span class="label-title">Pilih Produk</span></h2>
         <div class="products-grid">
             <div class="product-card" data-category="flashcard">
                 <div class="product-icon">🃏</div>
@@ -108,10 +114,10 @@
         <p>Chat langsung untuk konsultasi & pemesanan custom!</p>
         <div class="cta-buttons">
             <a href="https://wa.me/6285211222122?text=Halo%20Pupede!%20Saya%20mau%20pesan%20produk%20cetak" class="cta-btn cta-btn-wa" target="_blank">
-                📱 Pesan via WhatsApp
+                <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
             <a href="https://tiktok.com/@pupede" class="cta-btn cta-btn-tt" target="_blank">
-                🎵 Follow di TikTok
+                <i class="fab fa-tiktok"></i> TikTok
             </a>
         </div>
     </section>

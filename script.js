@@ -104,5 +104,9 @@
             mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
         });
 
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.style.display = 'none' ;
+        });
+
         mobileMenuBtn.click();
         mobileMenuBtn.click();
