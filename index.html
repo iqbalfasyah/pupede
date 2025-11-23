@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pupede - Creative Print & Gifts</title>
+    <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="full-width-m">
+                <div class="logo">🎨 <span class="label-title">Pupede</span></div>
+                <div class="mobile-menu-btn mobile-only" id="mobileMenuBtn">
+                    ☰
+                </div>
+            </div>
+            <!-- Desktop social links -->
+            <div class="social-links desktop-only">
+                <a href="https://wa.me/6285211222122?text=Halo%20Pupede!%20Saya%20mau%20pesan%20produk%20cetak" class="social-btn whatsapp-btn" target="_blank">
+                    📱 WhatsApp
+                </a>
+                <a href="https://tiktok.com/@pupede" class="social-btn tiktok-btn" target="_blank">
+                    🎵 TikTok
+                </a>
+                <a href="#products" class="social-btn products-btn">
+                    🛍️ Lihat Produk
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+           
+        </div>
+
+        <!-- Mobile dropdown menu -->
+        <div class="mobile-menu mobile-only" id="mobileMenu">
+            <a href="https://wa.me/6285211222122?text=Halo%20Pupede!%20Saya%20mau%20pesan%20produk%20cetak" target="_blank">📱 WhatsApp</a>
+            <a href="https://tiktok.com/@pupede" target="_blank">🎵 TikTok</a>
+            <a href="#products">🛍️ Lihat Produk</a>
+        </div>
+    </header>
+
+
+    <section class="hero">
+        <div class="floating">
+            <h1>✨ Pupede ✨</h1>
+            <p>Creative Print & Gifts untuk Semua Momen Spesialmu</p>
+            <a href="#products" class="cta-primary">Lihat Produk</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title" id="products">🎁 <span class="label-title">Produk Cetak</span></h2>
+        <div class="products-grid">
+            <div class="product-card" data-category="flashcard">
+                <div class="product-icon">🃏</div>
+                <h3 class="product-name">Flashcard</h3>
+                <p class="product-desc">Custom flashcard edukatif untuk belajar lebih seru</p>
+            </div>
+
+            <div class="product-card" data-category="kartudoa">
+                <div class="product-icon">🤲</div>
+                <h3 class="product-name">Kartu Doa</h3>
+                <p class="product-desc">Kartu doa cantik dengan desain personal</p>
+            </div>
+
+            <div class="product-card" data-category="planner">
+                <div class="product-icon">📓</div>
+                <h3 class="product-name">Planner & Jurnal</h3>
+                <p class="product-desc">Planner custom untuk produktivitas maksimal</p>
+            </div>
+
+            <div class="product-card" data-category="habittracker">
+                <div class="product-icon">📅</div>
+                <h3 class="product-name">Habit Tracker</h3>
+                <p class="product-desc">Tracker kebiasaan untuk capai target harianmu</p>
+            </div>
+
+            <div class="product-card" data-category="sticker">
+                <div class="product-icon">✨</div>
+                <h3 class="product-name">Sticker</h3>
+                <p class="product-desc">Sticker custom dengan desain sesukamu</p>
+            </div>
+
+            <div class="product-card" data-category="label">
+                <div class="product-icon">🏷️</div>
+                <h3 class="product-name">Label Nama</h3>
+                <p class="product-desc">Label nama waterproof untuk barang-barangmu</p>
+            </div>
+
+            <div class="product-card" data-category="undangan">
+                <div class="product-icon">💌</div>
+                <h3 class="product-name">Undangan</h3>
+                <p class="product-desc">Undangan cetak dengan desain elegan</p>
+            </div>
+
+            <div class="product-card" data-category="kartuucapan">
+                <div class="product-icon">🎉</div>
+                <h3 class="product-name">Kartu Ucapan</h3>
+                <p class="product-desc">Greeting card untuk momen-momen spesial</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="cta-section">
+        <h2>📲 Siap Pesan Sekarang?</h2>
+        <p>Chat langsung untuk konsultasi & pemesanan custom!</p>
+        <div class="cta-buttons">
+            <a href="https://wa.me/6285211222122?text=Halo%20Pupede!%20Saya%20mau%20pesan%20produk%20cetak" class="cta-btn cta-btn-wa" target="_blank">
+                📱 Pesan via WhatsApp
+            </a>
+            <a href="https://tiktok.com/@pupede" class="cta-btn cta-btn-tt" target="_blank">
+                🎵 Follow di TikTok
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Pupede - Creative Print & Gifts. Semua momen jadi spesial 💜</p>
+    </footer>
+
+    <!-- Modal Gallery -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Produk</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="productGallery" class="product-gallery"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
