@@ -1,125 +1,283 @@
-        let productsData = {};
 
-       fetch('products.json')
-        .then(res => {
-            if (!res.ok) throw new Error('Network response was not ok');
-            return res.text(); // baca dulu sebagai text
-        })
-        .then(text => {
-            try {
-                productsData = text ? JSON.parse(text) : {};
-            } catch(e) {
-                console.error('JSON parse error:', e);
-                productsData = {};
-            }
-        })
-        .catch(err => console.error('Failed to load product.json', err));
-    
-        // Modal functionality
-        const modal = document.getElementById('productModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const productGallery = document.getElementById('productGallery');
-        const closeBtn = document.querySelector('.close');
+const pupede = {
+  web: {}
+};
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+/* =========================
+   MAIN INIT
+========================= */
+pupede.web.init = function () {
+  pupede.web.product.init();
+  pupede.web.gdrive.init();
+  pupede.web.carousel.init();
+  pupede.web.ui.init();
+};
 
-        // Product card click
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const category = this.dataset.category;
-                showProductGallery(category);
-            });
-        });
+/* =========================
+   PRODUCT MODULE
+========================= */
+pupede.web.product = {
+  data: {},
+  modal: null,
+  modalTitle: null,
+  gallery: null,
+  closeBtn: null,
 
-        function showProductGallery(category) {
-            const data = productsData[category];
+  init() {
+    this.cacheDom();
+    this.bindEvents();
+    this.loadData();
+  },
 
-            modalTitle.textContent = data?.name || "Produk";
-            productGallery.innerHTML = '';
+  cacheDom() {
+    this.modal = document.getElementById('productModal');
+    this.modalTitle = document.getElementById('modalTitle');
+    this.gallery = document.getElementById('productGallery');
+    this.closeBtn = document.querySelector('.close');
+  },
 
-             if (!data) {
-                const comingSoon = document.createElement('div');
-                comingSoon.className = 'coming-soon';
-                comingSoon.textContent = 'Akan datang, tunggu momentnya ✨';
-                productGallery.appendChild(comingSoon);
-            }
-            else {
-                data.items.forEach(item => {
-                    const productItem = document.createElement('div');
-                    productItem.className = 'gallery-item';
-                    productItem.innerHTML = `
-                        <div class="gallery-image">
-                            <img src="${item.image}" alt="${item.name}">
-                        </div>
-                        <div class="gallery-info">
-                            <h3>${item.name}</h3>
-                            <p class="price">${item.price}</p>
-                            <div class="shop-links">
-                                <a href="${item.tokopedia}" target="_blank" class="shop-btn tokopedia" title="Beli di Tokopedia">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                        <circle cx="12" cy="12" r="10"/>
-                                    </svg>
-                                </a>
-                                <a href="${item.shopee}" target="_blank" class="shop-btn shopee" title="Beli di Shopee">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-                                    </svg>
-                                </a>
-                                <a href="${item.tiktok}" target="_blank" class="shop-btn tiktok" title="Beli di TikTok Shop">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                    productGallery.appendChild(productItem);
-                });
-            }
-            modal.style.display = 'block';
-            setTimeout(() => {
-                modal.classList.add('show');
-            }, 10);
-        }
+  bindEvents() {
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', () => {
+        this.show(card.dataset.category);
+      });
+    });
 
-        closeBtn.onclick = function() {
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
-        }
+    this.closeBtn.onclick = () => this.hide();
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.classList.remove('show');
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                }, 300);
-            }
-        }
+    window.onclick = (e) => {
+      if (e.target === this.modal) this.hide();
+    };
+  },
 
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
+  async loadData() {
+    try {
+      const res = await fetch('product.json');
+      const text = await res.text();
+      this.data = text ? JSON.parse(text) : {};
+    } catch (e) {
+      console.error('Failed load products.json', e);
+      this.data = {};
+    }
+  },
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
-        });
+  show(category) {
+    const data = this.data[category];
+    this.modalTitle.textContent = data?.name || 'Produk';
+    this.gallery.innerHTML = '';
+    console.log(data);
+    if (!data || !data.items || data.items.length === 0) {
+      this.gallery.innerHTML = `
+        <div class="coming-soon">
+          Akan datang, tunggu momentnya ✨
+        </div>`;
+    } else {
+      data.items.forEach(item => {
+        this.gallery.appendChild(this.createItem(item));
+      });
 
-        mobileMenu.addEventListener('click', () => {
-            mobileMenu.style.display = 'none' ;
-        });
+      pupede.web.gdrive.init();
 
-        mobileMenuBtn.click();
-        mobileMenuBtn.click();
+    }
+
+    this.modal.style.display = 'block';
+    setTimeout(() => this.modal.classList.add('show'), 10);
+  },
+
+  hide() {
+    this.modal.classList.remove('show');
+    setTimeout(() => (this.modal.style.display = 'none'), 300);
+  },
+
+  createItem(item) {
+  const div = document.createElement('div');
+
+  const price = Number(item.price);
+  const markupPercent = 30;
+  const priceBefore = pupede.web.ui.markupPrice(price, markupPercent);
+
+  div.className = 'gallery-item';
+  div.innerHTML = `
+    <div class="gallery-image">
+      <img src="${item.image}" alt="${item.name}">
+    </div>
+
+    <div class="gallery-info">
+      <h3>${item.name}</h3>
+
+      <div class="price-wrapper">
+        <span class="price-before">
+          Rp. ${pupede.web.ui.formatRupiah(priceBefore)}
+        </span>
+        <span class="price-now">
+          Rp. ${pupede.web.ui.formatRupiah(price)}
+        </span>
+      </div>
+
+      ${this.shopLinks(item)}
+    </div>
+  `;
+
+  return div;
+},
+
+  shopLinks(item) {
+    return `
+      <div class="shop-links">
+        <a href="https://wa.me/6285211222122?text=Halo%20Pupi,%20 Saya%20mau%20pesan%20produknya%20" target="_blank" class="shop-btn tokopedia"><i class="fab fa-whatsapp"></i></a>
+        ${item.tokopedia ? `<a href="${item.tokopedia}" target="_blank" class="shop-btn tokopedia"></a>` : ''}
+        ${item.shopee ? `<a href="${item.shopee}" target="_blank" class="shop-btn shopee"></a>` : ''}
+        ${item.tiktok ? `<a href="${item.tiktok}" target="_blank" class="shop-btn tiktok"><i class="fab fa-tiktok"></i></a>` : ''}
+      </div>`;
+  }
+};
+
+/* =========================
+   GOOGLE DRIVE IMAGE MODULE
+========================= */
+pupede.web.gdrive = {
+  init(root = document) {
+    this.render(root);
+  },
+
+  render(root) {
+    this.renderImg(root);
+    this.renderBackground(root);
+  },
+
+  /* ---------- IMG TAG ---------- */
+  renderImg(root) {
+    const images = root.querySelectorAll('img[src*="drive.google.com"]');
+
+    images.forEach(img => {
+      const id = this.extractId(img.src);
+      if (!id) return;
+
+      img.src = this.buildUrl(id);
+      img.onerror = () => (img.src = 'placeholder.png');
+    });
+  },
+
+  /* ---------- BACKGROUND IMAGE ---------- */
+  renderBackground(root) {
+    const elements = root.querySelectorAll('[style*="background-image"]');
+
+    elements.forEach(el => {
+      const style = el.getAttribute('style');
+
+      const urlMatch = style.match(
+        /background-image\s*:\s*url\((['"]?)(.*?)\1\)/i
+      );
+      if (!urlMatch) return;
+
+      const url = urlMatch[2];
+      if (!url.includes('drive.google.com')) return;
+
+      const id = this.extractId(url);
+      if (!id) return;
+
+      el.style.backgroundImage = `url('${this.buildUrl(id, 1920)}')`;
+    });
+  },
+
+  /* ---------- HELPERS ---------- */
+  extractId(src) {
+    return (
+      src.match(/\/d\/([^/]+)/)?.[1] ||
+      src.match(/id=([^&]+)/)?.[1] ||
+      null
+    );
+  },
+
+  buildUrl(id, size = 1200) {
+    return `https://drive.google.com/thumbnail?id=${id}&sz=w${size}`;
+  }
+};
+
+/* =========================
+   CAROUSEL MODULE
+========================= */
+pupede.web.carousel = {
+  slides: [],
+  index: 0,
+  timer: null,
+  defaultInterval: 5000,
+
+  init() {
+    this.slides = document.querySelectorAll('.slide');
+    if (!this.slides.length) return;
+
+    this.index = 0;
+    this.show(this.index);
+    this.scheduleNext();
+  },
+
+  show(i) {
+    this.slides.forEach((slide, idx) => {
+      slide.classList.toggle('active', idx === i);
+    });
+  },
+
+  scheduleNext() {
+    const currentSlide = this.slides[this.index];
+    const interval =
+      Number(currentSlide.dataset.interval) || this.defaultInterval;
+
+    clearTimeout(this.timer);
+
+    this.timer = setTimeout(() => {
+      this.index = (this.index + 1) % this.slides.length;
+      this.show(this.index);
+      this.scheduleNext(); // 🔁 loop with next slide interval
+    }, interval);
+  }
+};
+
+
+/* =========================
+   UI / MENU / SCROLL
+========================= */
+pupede.web.ui = {
+  init() {
+    this.smoothScroll();
+    this.mobileMenu();
+  },
+
+  smoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href'))
+          ?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  },
+
+  mobileMenu() {
+    const btn = document.getElementById('mobileMenuBtn');
+    const menu = document.getElementById('mobileMenu');
+
+    if (!btn || !menu) return;
+
+    btn.onclick = () => {
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    };
+
+    menu.onclick = () => (menu.style.display = 'none');
+  },
+  formatRupiah(value) {
+    const number = Number(value) || 0;
+    return number.toLocaleString('id-ID');
+  },
+   markupPrice(price, percent = 30) {
+    const base = Number(price.toString().replace(/\D/g, ''));
+    return Math.round(base + (base * percent / 100));
+  }
+};
+
+/* =========================
+   DOM READY
+========================= */
+document.addEventListener('DOMContentLoaded', () => {
+  pupede.web.init();
+});

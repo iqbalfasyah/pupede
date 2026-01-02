@@ -3,152 +3,41 @@
     "name": "Flashcard",
     "items": [
       {
-        "image": "https://via.placeholder.com/300x300/FF6B6B/FFFFFF?text=Flashcard+1",
-        "name": "Flashcard Alfabet",
-        "price": "Rp 25.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      },
-      {
-        "image": "https://via.placeholder.com/300x300/4ECDC4/FFFFFF?text=Flashcard+2",
-        "name": "Flashcard Angka",
-        "price": "Rp 25.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      },
-      {
-        "image": "https://via.placeholder.com/300x300/95E1D3/FFFFFF?text=Flashcard+3",
-        "name": "Flashcard Hewan",
-        "price": "Rp 30.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
+        "image": "https://drive.google.com/file/d/13k7c-Fb8u5q6Ss31h-kJX4vc_A48J6ex/view?usp=sharing",
+        "name": "Mengenal Warna",
+        "price": "18300",
+        "tokopedia": "",
+        "shopee": "",
+        "tiktok": "https://tiktok.com"
       }
     ]
   },
   "kartudoa": {
     "name": "Kartu Doa",
-    "items": [
-      {
-        "image": "https://via.placeholder.com/300x300/A8E6CF/FFFFFF?text=Kartu+Doa+1",
-        "name": "Kartu Doa Sehari-hari",
-        "price": "Rp 20.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      },
-      {
-        "image": "https://via.placeholder.com/300x300/FFD3B6/FFFFFF?text=Kartu+Doa+2",
-        "name": "Kartu Doa Anak",
-        "price": "Rp 20.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      }
-    ]
+    "items": []
   },
   "planner": {
     "name": "Planner & Jurnal",
-    "items": [
-      {
-        "image": "https://via.placeholder.com/300x300/FFAAA5/FFFFFF?text=Planner+1",
-        "name": "Daily Planner A5",
-        "price": "Rp 45.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      },
-      {
-        "image": "https://via.placeholder.com/300x300/FF8B94/FFFFFF?text=Planner+2",
-        "name": "Monthly Planner",
-        "price": "Rp 50.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      }
-    ]
+    "items": []
   },
   "habittracker": {
     "name": "Habit Tracker",
-    "items": [
-      {
-        "image": "https://via.placeholder.com/300x300/C7CEEA/FFFFFF?text=Habit+Tracker+1",
-        "name": "Habit Tracker 30 Hari",
-        "price": "Rp 35.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      },
-      {
-        "image": "https://via.placeholder.com/300x300/B4F8C8/FFFFFF?text=Habit+Tracker+2",
-        "name": "Habit Tracker Premium",
-        "price": "Rp 40.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      }
-    ]
+    "items": []
   },
   "sticker": {
     "name": "Sticker",
-    "items": [
-      {
-        "image": "https://via.placeholder.com/300x300/FBE7C6/FFFFFF?text=Sticker+1",
-        "name": "Sticker Pack Lucu",
-        "price": "Rp 15.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      },
-      {
-        "image": "https://via.placeholder.com/300x300/A0E7E5/FFFFFF?text=Sticker+2",
-        "name": "Sticker Aesthetic",
-        "price": "Rp 18.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      }
-    ]
+    "items": []
   },
   "label": {
     "name": "Label Nama",
-    "items": [
-      {
-        "image": "https://via.placeholder.com/300x300/B8E0D2/FFFFFF?text=Label+1",
-        "name": "Label Nama Waterproof",
-        "price": "Rp 20.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      }
-    ]
+    "items": []
   },
   "undangan": {
     "name": "Undangan",
-    "items": [
-      {
-        "image": "https://via.placeholder.com/300x300/EAC4D5/FFFFFF?text=Undangan+1",
-        "name": "Undangan Pernikahan",
-        "price": "Rp 5.000/pcs",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      }
-    ]
+    "items": []
   },
   "kartuucapan": {
     "name": "Kartu Ucapan",
-    "items": [
-      {
-        "image": "https://via.placeholder.com/300x300/FFB6B9/FFFFFF?text=Kartu+Ucapan+1",
-        "name": "Greeting Card Birthday",
-        "price": "Rp 15.000",
-        "tokopedia": "https://tokopedia.link/xxxxx",
-        "shopee": "https://shopee.co.id/xxxxx",
-        "tiktok": "https://vt.tiktok.com/xxxxx"
-      }
-    ]
+    "items": []
   }
 }

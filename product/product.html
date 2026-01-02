@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product JSON Manager</title>
+  <link rel="stylesheet" href="product.css" />
+</head>
+<body>
+
+<h1>Product Manager</h1>
+
+<div class="toolbar">
+  <select id="categorySelect"></select>
+  <button id="addItemBtn">+ Add Product</button>
+  <button id="downloadJson">⬇ Download product.json</button>
+</div>
+
+<div id="productList"></div>
+
+<!-- MODAL -->
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <h2 id="modalTitle">Add Product</h2>
+
+    <input id="img" placeholder="Image URL">
+    <input id="name" placeholder="Product Name">
+    <input id="price" placeholder="Price">
+    <input id="tokopedia" placeholder="Tokopedia URL">
+    <input id="shopee" placeholder="Shopee URL">
+    <input id="tiktok" placeholder="TikTok URL">
+
+    <div class="actions">
+      <button id="saveBtn">Save</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="product.js"></script>
+</body>
+</html>
